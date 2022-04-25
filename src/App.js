@@ -54,7 +54,7 @@ function App() {
   async function checkIfConnect(){
     /** ======== TODO 1-2 ======== */
 
-}
+  }
 
   async function handleDraw(row,col){
     

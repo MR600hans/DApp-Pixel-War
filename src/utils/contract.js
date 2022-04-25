@@ -4,7 +4,7 @@ import CANVAS from '../bin/canvas.json'
 
 export default class SmartContract{
     constructor(ethereum) {
-        this.contract_address = '0x41F32E231B6677A6A276049bcca8ebFb8b801a8F'
+        this.contract_address = '0x7d774ed50f2d26719F5d9eb952f45cA965270C9d'
         this.provider =  new ethers.providers.Web3Provider(ethereum)
         this.signer = this.provider.getSigner()
         this.abi = CANVAS.abi
@@ -19,6 +19,7 @@ export default class SmartContract{
 
     async getCanvas(){
        /** TODO 2-1 */
+       return []
     }
 }
 
