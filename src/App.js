@@ -31,9 +31,6 @@ function App() {
   useEffect(()=>{
     let arr = Array.from(Array(CANVAS_SIZE), () => Array.from(Array(CANVAS_SIZE), () => '#fff'));
     if(smartContract){
-      smartContract.getCanvasByEvent().then(result =>{
-        console.log("Event",result)
-      })
       smartContract.getCanvas().then(result=>{
         console.log("result",result)
         for(let i =0; i<result.length; i++){
