@@ -14,7 +14,7 @@ function App() {
   const [smartContract,setSmartContract] = useState()
 
   useEffect(()=>{
-    let arr = Array.from(Array(CANVAS_SIZE), row => Array.from(Array(CANVAS_SIZE), cell => '#fff'));
+    let arr = Array.from(Array(CANVAS_SIZE), () => Array.from(Array(CANVAS_SIZE), () => '#fff'));
     setCanvas(arr)
     checkIfConnect()
   },[])
@@ -29,7 +29,7 @@ function App() {
   },[account])
 
   useEffect(()=>{
-    let arr = Array.from(Array(CANVAS_SIZE), row => Array.from(Array(CANVAS_SIZE), cell => '#fff'));
+    let arr = Array.from(Array(CANVAS_SIZE), () => Array.from(Array(CANVAS_SIZE), () => '#fff'));
     if(smartContract){
       smartContract.getCanvas().then(result=>{
         console.log("result",result)
@@ -47,7 +47,7 @@ function App() {
 
   
 
-  function connect2Wallet(){
+  async function connect2Wallet(){
     /** ======== TODO 1-1 ======== */
   }
 
