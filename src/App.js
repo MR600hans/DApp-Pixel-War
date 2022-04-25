@@ -14,7 +14,7 @@ function App() {
   const [smartContract,setSmartContract] = useState()
 
   useEffect(()=>{
-    let arr = Array.from(Array(CANVAS_SIZE), row => Array.from(Array(CANVAS_SIZE), cell => '#fff'));
+    let arr = Array.from(Array(CANVAS_SIZE), () => Array.from(Array(CANVAS_SIZE), () => '#fff'));
     setCanvas(arr)
     checkIfConnect()
   },[])
@@ -29,7 +29,7 @@ function App() {
   },[account])
 
   useEffect(()=>{
-    let arr = Array.from(Array(CANVAS_SIZE), row => Array.from(Array(CANVAS_SIZE), cell => '#fff'));
+    let arr = Array.from(Array(CANVAS_SIZE), () => Array.from(Array(CANVAS_SIZE), () => '#fff'));
     if(smartContract){
       smartContract.getCanvas().then(result=>{
         console.log("result",result)
@@ -70,18 +70,14 @@ function App() {
     const color = selectedColor.replace('#','0x')
     const index = row*CANVAS_SIZE + col
     
-
     if(!smartContract){
       alert("Please connect to wallet first")
     }
     const result = await smartContract.draw(index,color)
-    if(result == 'Draw success'){
-      const _canvas = canvas
-      _canvas[row][col] = selectedColor
-      setCanvas(_canvas)
-    }
     alert(result)
-    
+    if(result == 'Draw success'){
+      window.location.reload()
+    }
   }
 
 

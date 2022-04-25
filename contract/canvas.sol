@@ -7,7 +7,7 @@ contract Canvas {
     bytes3 [dim] canvas;
     uint256 [dim] draw_time;
 
-    event Draw(address indexed painter, uint32 index, bytes3 color);
+    event Draw(address indexed painter, uint8 index, bytes3 color);
 
     function draw(uint8 index, bytes3 color) external{
         require(isPaintable(index),"Current pixel on 5 min cooldown."); 
@@ -17,14 +17,14 @@ contract Canvas {
     }
 
     function getCanvas() public view returns (bytes3[] memory){
-        bytes3[] memory  _canvas = new bytes3[](15*15);
-        for(uint8 i; i<15*15; i++){
+        bytes3[] memory  _canvas = new bytes3[](dim);
+        for(uint8 i; i< dim ; i++){
             _canvas[i] = canvas[i];
         }
         return _canvas;
     }
 
-    function isPaintable(uint32 index) public view returns(bool) {
+    function isPaintable(uint8 index) public view returns(bool) {
         if (block.timestamp - draw_time[index] > 5 minutes) {
             return true;
         } else {
