@@ -31,6 +31,9 @@ function App() {
   useEffect(()=>{
     let arr = Array.from(Array(CANVAS_SIZE), () => Array.from(Array(CANVAS_SIZE), () => '#fff'));
     if(smartContract){
+      smartContract.getCanvasByEvent().then(result =>{
+        console.log("Event",result)
+      })
       smartContract.getCanvas().then(result=>{
         console.log("result",result)
         for(let i =0; i<result.length; i++){
@@ -53,13 +56,12 @@ function App() {
     }
   }
 
-  function connect2Wallet(){
+  async function connect2Wallet(){
     const { ethereum } = window
     if(ethereum){
       console.log("has metamask")
-      ethereum.request({method: 'eth_requestAccounts'}).then(result=>{
-        setAccount(result[0])
-      })
+      const accounts = ethereum.request({method: 'eth_requestAccounts'})
+      setAccount(accounts[0])
     } else {
       alert("Please install metamask")
     }
