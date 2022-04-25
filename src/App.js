@@ -50,9 +50,9 @@ function App() {
 
   async function checkIfConnect(){
     const {ethereum} = window
-    const accouts = await ethereum.request({method: 'eth_accounts'})
-    if(accouts.length>0){
-      setAccount(accouts[0])
+    const accounts = await ethereum.request({method: 'eth_accounts'})
+    if(accounts.length>0){
+      setAccount(accounts[0])
     }
   }
 

@@ -13,9 +13,7 @@ export default class SmartContract{
         const connectedContract = new ethers.Contract(this.contract_address,this.abi,this.signer)
         try {
             const tx_response = await connectedContract.draw(index, color)
-            console.log("tx_response",tx_response)
             const tx_receipt = await tx_response.wait()
-            console.log("tx_receipt",tx_receipt)
             if(tx_receipt.status){
                return 'Draw success'
             }
